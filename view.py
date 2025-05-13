@@ -12,6 +12,12 @@ class View(object):
         # UI elements
         self.__title = None
         self.__theme_switch = None
+        self.__select_language = None  # menu a tendina --> Dropdown (Row1)
+        self.__alert = None
+        self.__type_of_research = None  # menu a tendina --> Dropdown (Row2 - parte sinistra)
+        self.__text_to_check = None  # spazio dove inserire testo di ingresso --> TextField (Row2 - parte centrale)
+        self.__start_correction = None  # bottone per avviare la correzione --> Elevated Button (Row2- parte destra)
+        self.__out_correction = None  # area di testo di uscita della correzione --> ListView (Row3)
 
         # define the UI elements and populate the page
 
@@ -34,8 +40,10 @@ class View(object):
 
     def update(self):
         self.page.update()
+
     def setController(self, controller):
         self.__controller = controller
+
     def theme_changed(self, e):
         """Function that changes the color theme of the app, when the corresponding
         switch is triggered"""
