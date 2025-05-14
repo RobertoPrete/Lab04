@@ -34,11 +34,11 @@ class View(object):
 
         # Add your stuff here
 
-        self.__select_language = ft.Dropdown(label="Select language", options=[ft.DropdownOption("italian"), ft.DropdownOption("english"), ft.DropdownOption("spanish")])
+        self.__select_language = ft.Dropdown(label="Select language", width=200, options=[ft.DropdownOption("italian"), ft.DropdownOption("english"), ft.DropdownOption("spanish")])
         row1 = ft.Row(controls=[self.__select_language])
 
-        self.__type_of_search = ft.Dropdown(label="Search Modality", options=[ft.DropdownOption("Default"), ft.DropdownOption("Linear"), ft.DropdownOption("Dichotomic")])
-        self.__text_to_check = ft.TextField(label="Add your sentence here")
+        self.__type_of_search = ft.Dropdown(label="Search Modality", width=300, options=[ft.DropdownOption("Default"), ft.DropdownOption("Linear"), ft.DropdownOption("Dichotomic")])
+        self.__text_to_check = ft.TextField(label="Add your sentence here", expand=True,)
         self.__start_correction = ft.ElevatedButton(text="Spell Check")
         row2 = ft.Row(controls=[self.__type_of_search, self.__text_to_check, self.__start_correction])
 
