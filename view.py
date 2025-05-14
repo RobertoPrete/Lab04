@@ -14,7 +14,7 @@ class View(object):
         self.__theme_switch = None
         self.__select_language = None  # menu a tendina --> Dropdown (Row1)
         self.__alert = None
-        self.__type_of_research = None  # menu a tendina --> Dropdown (Row2 - parte sinistra)
+        self.__type_of_search = None  # menu a tendina --> Dropdown (Row2 - parte sinistra)
         self.__text_to_check = None  # spazio dove inserire testo di ingresso --> TextField (Row2 - parte centrale)
         self.__start_correction = None  # bottone per avviare la correzione --> Elevated Button (Row2- parte destra)
         self.__out_correction = None  # area di testo di uscita della correzione --> ListView (Row3)
@@ -28,13 +28,23 @@ class View(object):
         self.__title = ft.Text("TdP 2024 - Lab 04 - SpellChecker ++", size=24, color="blue")
         self.__theme_switch = ft.Switch(label="Light theme", on_change=self.theme_changed)
         self.page.controls.append(
-            ft.Row(spacing=30, controls=[self.__theme_switch, self.__title, ],
-                   alignment=ft.MainAxisAlignment.START)
+            ft.Row(spacing=30, controls=[self.__theme_switch, self.__title,],
+                   alignment=ft.MainAxisAlignment.CENTER)
         )
 
         # Add your stuff here
 
-        self.page.add([])
+        self.__select_language = ft.Dropdown(label="Select language", options=[ft.DropdownOption("italian"), ft.DropdownOption("english"), ft.DropdownOption("spanish")])
+        row1 = ft.Row(controls=[self.__select_language])
+
+        self.__type_of_search = ft.Dropdown(label="Search Modality", options=[ft.DropdownOption("Default"), ft.DropdownOption("Linear"), ft.DropdownOption("Dichotomic")])
+        self.__text_to_check = ft.TextField(label="Add your sentence here")
+        self.__start_correction = ft.ElevatedButton(text="Spell Check")
+        row2 = ft.Row(controls=[self.__type_of_search, self.__text_to_check, self.__start_correction])
+
+        # self.__out_correction = ft.ListView
+
+        self.page.add(row1, row2)
 
         self.page.update()
 
