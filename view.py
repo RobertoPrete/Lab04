@@ -34,7 +34,7 @@ class View(object):
 
         # Add your stuff here
 
-        self.__select_language = ft.Dropdown(label="Select language", width=200, options=[ft.DropdownOption("italian"), ft.DropdownOption("english"), ft.DropdownOption("spanish")])
+        self.__select_language = ft.Dropdown(label="Select language", width=200, options=[ft.DropdownOption("italian"), ft.DropdownOption("english"), ft.DropdownOption("spanish")], on_change=self.__controller.handle_select_language)
         row1 = ft.Row(controls=[self.__select_language])
 
         self.__type_of_search = ft.Dropdown(label="Search Modality", width=300, options=[ft.DropdownOption("Default"), ft.DropdownOption("Linear"), ft.DropdownOption("Dichotomic")])
@@ -42,9 +42,10 @@ class View(object):
         self.__start_correction = ft.ElevatedButton(text="Spell Check")
         row2 = ft.Row(controls=[self.__type_of_search, self.__text_to_check, self.__start_correction])
 
-        # self.__out_correction = ft.ListView
+        self.__out_correction = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
+        row3 = ft.Row(controls=[self.__out_correction])
 
-        self.page.add(row1, row2)
+        self.page.add(row1, row2, row3)
 
         self.page.update()
 
@@ -69,3 +70,6 @@ class View(object):
         #     ft.colors.GREY_900 if self.page.theme_mode == ft.ThemeMode.DARK else ft.colors.GREY_300
         # )
         self.page.update()
+
+    # def create_alert(self):
+        # self.__alert.

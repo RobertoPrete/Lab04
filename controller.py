@@ -56,6 +56,14 @@ class SpellChecker:
               "4. Exit\n" +
               "______________________________\n")
 
+    def handle_select_language(self, e):
+        if e.control.value == "italian" or e.control.value == "spanish" or e.control.value == "english":
+            self._view.__alert = ft.AlertDialog(title="Messaggio di conferma",
+                                                content=ft.Text(value="Lingua selezionata correttamente"))
+            self._view.page.add(self._view.__alert)
+        else:
+            print("qualcosa non funziona")
+
 
 def replaceChars(text):
     chars = "\\`*_{}[]()>#+-.!$?%^;,=_~"
