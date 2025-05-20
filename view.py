@@ -34,7 +34,7 @@ class View(object):
 
         # Add your stuff here
 
-        self.__select_language = ft.Dropdown(label="Select language", width=200, options=[ft.DropdownOption("italian"), ft.DropdownOption("english"), ft.DropdownOption("spanish")], on_change=self.__controller.handle_select_language)
+        self.__select_language = ft.Dropdown(label="Select language", width=200, options=[ft.DropdownOption("italian"), ft.DropdownOption("english"), ft.DropdownOption("spanish")], on_change=self.__controller.handle_alert)
         row1 = ft.Row(controls=[self.__select_language])
 
         self.__type_of_search = ft.Dropdown(label="Search Modality", width=300, options=[ft.DropdownOption("Default"), ft.DropdownOption("Linear"), ft.DropdownOption("Dichotomic")])
@@ -74,5 +74,6 @@ class View(object):
     def create_alert(self, titolo, contenuto):
         self.__alert = None
         self.__alert = ft.AlertDialog(title=titolo,
-                                      content=ft.Text(value=contenuto))
-        self.page.add(self.__alert)
+                                      content=ft.Text(value=contenuto), open=True)
+        self.page.controls.append(self.__alert)
+        self.page.update()
