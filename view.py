@@ -71,5 +71,8 @@ class View(object):
         # )
         self.page.update()
 
-    # def create_alert(self):
-        # self.__alert.
+    def create_alert(self, titolo, contenuto):
+        self.__alert = None
+        self.__alert = ft.AlertDialog(title=titolo,
+                                      content=ft.Text(value=contenuto))
+        self.page.add(self.__alert)
