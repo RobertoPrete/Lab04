@@ -39,7 +39,7 @@ class View(object):
 
         self.__type_of_search = ft.Dropdown(label="Search Modality", width=300, options=[ft.DropdownOption("Default"), ft.DropdownOption("Linear"), ft.DropdownOption("Dichotomic")], on_change=self.__controller.handle_alert)
         self.__text_to_check = ft.TextField(label="Add your sentence here", expand=True,)
-        self.__start_correction = ft.ElevatedButton(text="Spell Check")
+        self.__start_correction = ft.ElevatedButton(text="Spell Check", on_click=self.__controller.handle_Spell_Check)
         row2 = ft.Row(controls=[self.__type_of_search, self.__text_to_check, self.__start_correction])
 
         self.__out_correction = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
@@ -77,3 +77,12 @@ class View(object):
                                       content=ft.Text(value=contenuto), open=True, modal=False)
         self.page.controls.append(self.__alert)
         self.page.update()
+
+    def get_language(self):
+        return self.__select_language.value
+
+    def get_modality_of_search(self):
+        return self.__type_of_search.value
+
+    def get_text_to_check(self):
+        return self.__text_to_check.value

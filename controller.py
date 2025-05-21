@@ -59,13 +59,21 @@ class SpellChecker:
     def handle_alert(self, e):
         if e.control.value == "italian" or e.control.value == "spanish" or e.control.value == "english":
             self._view.create_alert("Messaggio di conferma", "Lingua selezionata correttamente")
-            # self._view.__alert = ft.AlertDialog(title="Messaggio di conferma", content=ft.Text(value="Lingua selezionata correttamente"))
-            # self._view.page.add(self._view.__alert)
         elif e.control.value == "Default" or e.control.value == "Linear" or e.control.value == "Dichotomic":
             self._view.create_alert("Messaggio di conferma", "Modalità di ricerca selezionata correttamente")
         else:
             self._view.create_alert("ERRORE!", "Opzione selezionata non esistente")
 
+    def handle_Spell_Check(self, e):
+        language = self._view.get_language()
+        if language is None:
+            self._view.create_alert("Errore!", "Selezionare una lingua")
+        txtIn = self._view.get_text_to_check()
+        if txtIn == "":
+            self._view.create_alert("Errore!", "Inserire una frase da correggere")
+        modality = self._view.get_modality_of_search()
+        if modality is None:
+            self._view.create_alert("Errore!", "Selezionare una modalità di ricerca")
 
 def replaceChars(text):
     chars = "\\`*_{}[]()>#+-.!$?%^;,=_~"
