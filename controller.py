@@ -12,7 +12,7 @@ class SpellChecker:
         txtIn = replaceChars(txtIn.lower())
 
         words = txtIn.split()
-        paroleErrate = " - "
+        paroleErrate = ""
 
         match modality:
             case "Default":
@@ -68,12 +68,21 @@ class SpellChecker:
         language = self._view.get_language()
         if language is None:
             self._view.create_alert("Errore!", "Selezionare una lingua")
-        txtIn = self._view.get_text_to_check()
-        if txtIn == "":
-            self._view.create_alert("Errore!", "Inserire una frase da correggere")
         modality = self._view.get_modality_of_search()
         if modality is None:
             self._view.create_alert("Errore!", "Selezionare una modalità di ricerca")
+        txtIn = self._view.get_text_to_check()
+        if txtIn == "":
+            self._view.create_alert("Errore!", "Inserire una frase da correggere")
+
+        self._view.clear_input_text()
+
+        e.control.value = self.handleSentence(txtIn, language, modality)
+        print("valore evento", e.control.value, type(e.control.value))
+        parole_errate = e.control.value[0].strip(" -")
+        print("parole errate: ", parole_errate, type(parole_errate))
+
+        self._view.output_correzione(txtIn, parole_errate, e.control.value[1])
 
 def replaceChars(text):
     chars = "\\`*_{}[]()>#+-.!$?%^;,=_~"

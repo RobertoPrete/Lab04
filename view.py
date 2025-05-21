@@ -34,12 +34,23 @@ class View(object):
 
         # Add your stuff here
 
-        self.__select_language = ft.Dropdown(label="Select language", width=200, options=[ft.DropdownOption("italian"), ft.DropdownOption("english"), ft.DropdownOption("spanish")], on_change=self.__controller.handle_alert)
+        self.__select_language = ft.Dropdown(label="Select language",
+                                             width=200,
+                                             options=[ft.DropdownOption("italian"),
+                                                      ft.DropdownOption("english"),
+                                                      ft.DropdownOption("spanish")],
+                                             on_change=self.__controller.handle_alert)
         row1 = ft.Row(controls=[self.__select_language])
 
-        self.__type_of_search = ft.Dropdown(label="Search Modality", width=300, options=[ft.DropdownOption("Default"), ft.DropdownOption("Linear"), ft.DropdownOption("Dichotomic")], on_change=self.__controller.handle_alert)
+        self.__type_of_search = ft.Dropdown(label="Search Modality",
+                                            width=300,
+                                            options=[ft.DropdownOption("Default"),
+                                                     ft.DropdownOption("Linear"),
+                                                     ft.DropdownOption("Dichotomic")],
+                                            on_change=self.__controller.handle_alert)
         self.__text_to_check = ft.TextField(label="Add your sentence here", expand=True,)
-        self.__start_correction = ft.ElevatedButton(text="Spell Check", on_click=self.__controller.handle_Spell_Check)
+        self.__start_correction = ft.ElevatedButton(text="Spell Check",
+                                                    on_click=self.__controller.handle_Spell_Check)
         row2 = ft.Row(controls=[self.__type_of_search, self.__text_to_check, self.__start_correction])
 
         self.__out_correction = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
@@ -74,7 +85,9 @@ class View(object):
     def create_alert(self, titolo, contenuto):
         self.__alert = None
         self.__alert = ft.AlertDialog(title=titolo,
-                                      content=ft.Text(value=contenuto), open=True, modal=False)
+                                      content=ft.Text(value=contenuto),
+                                      open=True,
+                                      modal=False)
         self.page.controls.append(self.__alert)
         self.page.update()
 
@@ -86,3 +99,14 @@ class View(object):
 
     def get_text_to_check(self):
         return self.__text_to_check.value
+
+    def clear_input_text(self):
+        self.__text_to_check.value = ""
+        self.__text_to_check.label = "Add your sentence here"
+        self.page.update()
+
+    def output_correzione(self, txt_input, parole_errate, tempo_ricerca ):
+        self.__out_correction.controls.append(ft.Text(value=f"1. {txt_input}"))
+        self.__out_correction.controls.append(ft.Text(value=f"2. Parole errate: {parole_errate}"))
+        self.__out_correction.controls.append(ft.Text(value=f"3. Tempo di ricerca: {tempo_ricerca} secondi"))
+        self.page.update()
