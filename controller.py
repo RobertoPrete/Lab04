@@ -61,8 +61,10 @@ class SpellChecker:
             self._view.create_alert("Messaggio di conferma", "Lingua selezionata correttamente")
             # self._view.__alert = ft.AlertDialog(title="Messaggio di conferma", content=ft.Text(value="Lingua selezionata correttamente"))
             # self._view.page.add(self._view.__alert)
+        elif e.control.value == "Default" or e.control.value == "Linear" or e.control.value == "Dichotomic":
+            self._view.create_alert("Messaggio di conferma", "Modalità di ricerca selezionata correttamente")
         else:
-            print("qualcosa non funziona")
+            self._view.create_alert("ERRORE!", "Opzione selezionata non esistente")
 
 
 def replaceChars(text):

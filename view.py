@@ -37,7 +37,7 @@ class View(object):
         self.__select_language = ft.Dropdown(label="Select language", width=200, options=[ft.DropdownOption("italian"), ft.DropdownOption("english"), ft.DropdownOption("spanish")], on_change=self.__controller.handle_alert)
         row1 = ft.Row(controls=[self.__select_language])
 
-        self.__type_of_search = ft.Dropdown(label="Search Modality", width=300, options=[ft.DropdownOption("Default"), ft.DropdownOption("Linear"), ft.DropdownOption("Dichotomic")])
+        self.__type_of_search = ft.Dropdown(label="Search Modality", width=300, options=[ft.DropdownOption("Default"), ft.DropdownOption("Linear"), ft.DropdownOption("Dichotomic")], on_change=self.__controller.handle_alert)
         self.__text_to_check = ft.TextField(label="Add your sentence here", expand=True,)
         self.__start_correction = ft.ElevatedButton(text="Spell Check")
         row2 = ft.Row(controls=[self.__type_of_search, self.__text_to_check, self.__start_correction])
@@ -74,6 +74,6 @@ class View(object):
     def create_alert(self, titolo, contenuto):
         self.__alert = None
         self.__alert = ft.AlertDialog(title=titolo,
-                                      content=ft.Text(value=contenuto), open=True)
+                                      content=ft.Text(value=contenuto), open=True, modal=False)
         self.page.controls.append(self.__alert)
         self.page.update()
